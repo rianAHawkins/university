@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Courses</title>
+</head>
+<body>
+    <h1>Get Courses by Student ID</h1>
+    <form th:action="@{/api/form}" method="get" onsubmit="return handleSubmit(event)">
+        <input type="text" id="studentId" placeholder="Enter Student ID" />
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const id = document.getElementById("studentId").value;
+            const response = await fetch(`/api/student/${id}`);
+            const data = await response.json();
+
+            const resultDiv = document.getElementById("results");
+            resultDiv.innerHTML = "<h2>Courses:</h2><ul>" +
+                data.map(course => `<li>${course}</li>`).join('') +
+                "</ul>";
+            return false;
+        }
+    </script>
+</body>
+</html>
