@@ -92,3 +92,7 @@ docker run -d -p 3000:80 --name uniUI react-frontend
 
 
 For local run follow README in each sub project.
+
+Example ids input:
+1
+2
